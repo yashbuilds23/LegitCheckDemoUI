@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGITCHECK - Student-First Opportunity Verifier</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains+Mono', monospace;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- HEADER / BRANDING -->
+  <header className="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20 border-b border-slate-800/80">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2.5 rounded-xl shadow-lg shadow-cyan-500/20 ring-1 ring-white/20">
+            <i data-lucide="shield-alert" class="w-6 h-6 sm:w-7 sm:h-7 text-slate-950 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-extrabold text-xl sm:text-2xl tracking-wider text-white">LEGIT<span class="text-cyan-400">CHECK</span></span>
+              <span class="bg-cyan-950 text-cyan-400 text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full border border-cyan-800/60 uppercase tracking-widest">
+                Prototype
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-slate-400 font-medium tracking-tight">LOOKS LEGIT. LOOK CLOSER.</p>
+          </div>
+        </div>
+
+        <!-- Academic Context Tag -->
+        <div class="hidden lg:flex items-center space-x-3 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs">
+          <span class="text-cyan-400 font-semibold">Design Thinking Assessment-2</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-slate-300">Yash Raj (UID: 26BCS11169)</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-slate-400">Chandigarh University</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex space-x-1 sm:space-x-2 py-2 overflow-x-auto scrollbar-none">
+        <button onclick="switchTab('verifier')" id="tab-btn-verifier" class="tab-btn active-tab flex items-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all whitespace-nowrap bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20">
+          <i data-lucide="search" class="w-4 h-4"></i>
+          <span>01. Opportunity Verifier</span>
+        </button>
+
+        <button onclick="switchTab('design')" id="tab-btn-design" class="tab-btn flex items-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/50">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          <span>02. Design Thinking Process</span>
+        </button>
+
+        <button onclick="switchTab('storyboard')" id="tab-btn-storyboard" class="tab-btn flex items-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/50">
+          <i data-lucide="award" class="w-4 h-4"></i>
+          <span>03. Storyboard & Quiz</span>
+        </button>
+
+        <button onclick="switchTab('research')" id="tab-btn-research" class="tab-btn flex items-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-800/50">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>04. Research & Solutions Matrix</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ===================================== TAB 1: CORE VERIFIER APP ===================================== -->
+    <section id="tab-content-verifier" class="tab-content space-y-6">
+      
+      <!-- Top Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+          <div>
+            <div class="inline-flex items-center space-x-2 text-cyan-400 text-xs font-semibold tracking-wider uppercase mb-1">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+              <span>Evidence, Not Guesswork</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Evaluate Suspicious Online Opportunities</h1>
+            <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
+              Paste an offer received on WhatsApp, Instagram, or Email. LEGITCHECK identifies psychological traps, builds an Evidence Card, and provides safe next steps without false promises.
+            </p>
+          </div>
+          
+          <div class="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl flex items-center space-x-3 shrink-0">
+            <div class="p-2 bg-amber-500/10 rounded-lg border border-amber-500/20 text-amber-400">
+              <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            </div>
+            <div class="text-xs">
+              <p class="text-slate-200 font-semibold">Student Safety Guardrail</p>
+              <p class="text-slate-400">Never share OTPs, passwords or upfront fees</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Verifier Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Side: Inputs & Presets -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-4">
+            
+            <div class="flex items-center justify-between">
+              <label class="text-sm font-semibold text-slate-200 flex items-center space-x-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-cyan-400"></i>
+                <span>Opportunity Text Snippet</span>
+              </label>
+              <span class="text-[11px] text-slate-500">Paste exact offer</span>
+            </div>
+
+            <!-- Presets -->
+            <div>
+              <p class="text-xs text-slate-400 mb-2 font-medium">Select a test scenario from research deck:</p>
+              <div class="grid grid-cols-3 gap-2" id="preset-container">
+                <!-- Javascript will inject presets -->
+              </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="relative">
+              <textarea
+                id="scanner-input"
+                rows="7"
+                placeholder="Paste message text here (e.g. 'Congratulations! Selected for paid internship...')"
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-xs sm:text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all font-mono leading-relaxed resize-none"
+              ></textarea>
+              <div class="absolute bottom-3 right-3 text-[10px] text-slate-600 font-mono" id="char-count">
+                0 chars
+              </div>
+            </div>
+
+            <!-- Analyze Button -->
+            <button
+              id="analyze-btn"
+              onclick="runScanner()"
+              class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2"
+            >
+              <i data-lucide="search" class="w-4 h-4 stroke-[2.5]"></i>
+              <span>CHECK THIS OFFER</span>
+            </button>
+
+            <p class="text-[11px] text-slate-500 text-center">
+              🔒 Privacy Protected: Parsed client-side in real-time. No personal records saved.
+            </p>
+          </div>
+
+          <!-- Key Design Principle Note -->
+          <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 text-xs text-slate-400 space-y-1.5">
+            <div class="flex items-center space-x-2 text-slate-300 font-semibold">
+              <i data-lucide="info" class="w-4 h-4 text-cyan-400"></i>
+              <span>Core Design Innovation</span>
+            </div>
+            <p>
+              Traditional spam filters say "Safe" or "Unsafe" without context. LEGITCHECK breaks down <em>why</em> a message feels suspicious and maps out verifiable evidence steps.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Side: Analysis & Output -->
+        <div class="lg:col-span-7 space-y-5" id="output-wrapper">
+          <!-- Will be rendered dynamically via JavaScript -->
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================== TAB 2: DESIGN THINKING PROCESS ===================================== -->
+    <section id="tab-content-design" class="tab-content hidden space-y-8">
+      
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Assessment-2 Methodology</span>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Design Thinking Framework: Problem to Ideation</h1>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          A structured walkthrough showing how student empathy interviews shaped LEGITCHECK's feature requirements.
+        </p>
+      </div>
+
+      <!-- Problem & HMW Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+          <div class="p-2.5 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl w-fit">
+            <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">01. Problem Statement</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Students get offers on WhatsApp, Instagram, and email but cannot easily tell genuine from deceptive. Generic “looks suspicious” warnings give no next step.
+          </p>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1 text-slate-400 font-mono">
+            <p class="font-bold text-slate-200">Four Critical Unanswered Questions:</p>
+            <p>1. Is the organisation genuine?</p>
+            <p>2. Is the recruiter really linked to it?</p>
+            <p>3. Is the specific offer legitimate?</p>
+            <p>4. What evidence should be checked before acting?</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+          <div class="p-2.5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 rounded-xl w-fit">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">02. How Might We (HMW)</h3>
+          <blockquote class="text-slate-200 text-sm sm:text-base font-semibold italic border-l-2 border-cyan-500 pl-4 py-2 bg-slate-950/50 rounded-r-xl">
+            “How might we help students evaluate suspicious online opportunities, understand the evidence, and take safer next steps, without a false guarantee?”
+          </blockquote>
+          <p class="text-slate-400 text-xs leading-relaxed pt-1">
+            This framing prioritizes clarity over automated binary judgment—empowering students to perform guided checks rather than trusting black-box AI scores.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5 Whys Root Cause Analysis -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Root Cause Hypothesis</span>
+            <h3 class="text-lg font-bold text-white mt-0.5">The 5 Whys Analysis (PPT Slide 08)</h3>
+          </div>
+          <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full font-mono">PPT Assessment 2</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-start space-x-3">
+            <div class="bg-cyan-500/10 text-cyan-400 font-bold text-xs p-2 rounded-lg shrink-0">WHY 1</div>
+            <div>
+              <p class="text-xs font-bold text-cyan-300">Why might a student trust a suspicious offer?</p>
+              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Its presentation and visual polish appear convincing.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-start space-x-3">
+            <div class="bg-cyan-500/10 text-cyan-400 font-bold text-xs p-2 rounded-lg shrink-0">WHY 2</div>
+            <div>
+              <p class="text-xs font-bold text-cyan-300">Why might that presentation be persuasive?</p>
+              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Polish, branding, and urgency imply legitimacy.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-start space-x-3">
+            <div class="bg-cyan-500/10 text-cyan-400 font-bold text-xs p-2 rounded-lg shrink-0">WHY 3</div>
+            <div>
+              <p class="text-xs font-bold text-cyan-300">Why might the impression go unchallenged?</p>
+              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Sender identity and corporate design are easily imitated.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-start space-x-3">
+            <div class="bg-cyan-500/10 text-cyan-400 font-bold text-xs p-2 rounded-lg shrink-0">WHY 4</div>
+            <div>
+              <p class="text-xs font-bold text-cyan-300">Why might verification be skipped?</p>
+              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Checking organisation, recruiter, and offer details takes time and effort across scattered sources.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-start space-x-3">
+            <div class="bg-cyan-500/10 text-cyan-400 font-bold text-xs p-2 rounded-lg shrink-0">WHY 5</div>
+            <div>
+              <p class="text-xs font-bold text-cyan-300">Why does the problem persist?</p>
+              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">No simple, explainable way to verify at the exact moment of decision.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-cyan-950/40 border border-cyan-800/60 p-4 rounded-xl text-xs text-cyan-200">
+          <strong class="font-bold uppercase tracking-wider text-cyan-400">Working Root-Cause Hypothesis: </strong>
+          Verification friction under uncertainty and time pressure. LEGITCHECK lowers this friction by bringing evidence and actions together into one interface.
+        </div>
+      </div>
+
+      <!-- Persona & Empathy Map -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+        <div class="flex items-center space-x-3">
+          <div class="p-3 bg-cyan-500/10 rounded-xl text-cyan-400">
+            <i data-lucide="user" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Proto-Persona (PPT Slide 06)</span>
+            <h3 class="text-xl font-bold text-white">Jayesh, 19 — First-Year College Student</h3>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1">
+            <p class="font-bold text-cyan-400">01. GOALS</p>
+            <p class="text-slate-300">Discover genuine career opportunities without falling for deceptive fees or phishing.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1">
+            <p class="font-bold text-cyan-400">02. NEEDS</p>
+            <p class="text-slate-300">Understand clear warning signs and actionable verification steps before taking action.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1">
+            <p class="font-bold text-amber-400">03. FRUSTRATIONS</p>
+            <p class="text-slate-300">Unclear recruiter identities, pressure tactics, and scattered evidence across sites.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1">
+            <p class="font-bold text-emerald-400">04. SUCCESS CRITERIA</p>
+            <p class="text-slate-300">Understand the evidence available and feel confident in making a safer next choice.</p>
+          </div>
+        </div>
+
+        <!-- Empathy Grid -->
+        <div class="border-t border-slate-800 pt-5">
+          <h4 class="text-sm font-bold text-slate-200 mb-3">Jayesh's Empathy Map Matrix (PPT Slide 05)</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <p class="font-bold text-cyan-400 mb-1.5">SAYS</p>
+              <ul class="list-disc list-inside text-slate-300 space-y-1">
+                <li>“Is this internship real?”</li>
+                <li>“Should I pay to confirm my seat?”</li>
+                <li>“Does anyone know this company?”</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <p class="font-bold text-cyan-400 mb-1.5">THINKS</p>
+              <ul class="list-disc list-inside text-slate-300 space-y-1">
+                <li>“It looks professional, but why the rush?”</li>
+                <li>“What if I miss a genuine chance?”</li>
+                <li>“Who is actually messaging me?”</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <p class="font-bold text-cyan-400 mb-1.5">DOES</p>
+              <ul class="list-disc list-inside text-slate-300 space-y-1">
+                <li>Re-reads the message text</li>
+                <li>Searches the company name online</li>
+                <li>Asks friends or WhatsApp college groups</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <p class="font-bold text-amber-400 mb-1.5">FEELS</p>
+              <ul class="list-disc list-inside text-slate-300 space-y-1">
+                <li>Excited by the opportunity</li>
+                <li>Pressured by tight deadlines</li>
+                <li>Worried about losing money and personal data</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================== TAB 3: STORYBOARD & QUIZ ===================================== -->
+    <section id="tab-content-storyboard" class="tab-content hidden space-y-8">
+      
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">PPT Slide 07 & 13</span>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Storyboard & Instincts Micro-Game</h1>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Follow Jayesh's journey from receiving a suspicious message to making a safer decision, then test your own scam-detection skills.
+        </p>
+      </div>
+
+      <!-- Storyboard Steps -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-slate-500">STAGE 01</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">Sees Offer</span>
+          </div>
+          <div>
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded-xl w-fit mb-2 text-cyan-400">
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+            </div>
+            <p class="text-sm font-bold text-white">Paid Internship Offer</p>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Jayesh receives an attractive offer message on WhatsApp detailing stipends and work.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-slate-500">STAGE 02</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">Gets Interested</span>
+          </div>
+          <div>
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded-xl w-fit mb-2 text-blue-400">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <p class="text-sm font-bold text-white">High Curiosity</p>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Reads the professional wording and feels excited about building career credentials.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-slate-500">STAGE 03</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">Spots Doubt</span>
+          </div>
+          <div>
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded-xl w-fit mb-2 text-amber-400">
+              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            </div>
+            <p class="text-sm font-bold text-white">₹799 Fee & Timer</p>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Notices a ₹799 verification fee request with a strict 10-minute timer.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-slate-500">STAGE 04</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">Checks LEGITCHECK</span>
+          </div>
+          <div>
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded-xl w-fit mb-2 text-cyan-400">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </div>
+            <p class="text-sm font-bold text-white">Analyzes Evidence</p>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pastes message into LEGITCHECK to see red flags and evidence card breakdown.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-slate-500">STAGE 05</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">Takes Safe Action</span>
+          </div>
+          <div>
+            <div class="p-2 bg-slate-950 border border-slate-800 rounded-xl w-fit mb-2 text-emerald-400">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <p class="text-sm font-bold text-white">Official Verification</p>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Navigates directly to official site, bypasses fee demand, and stays safe.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Your Instincts Quiz -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
+          <div>
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>Interactive Micro-Game</span>
+            </span>
+            <h3 class="text-xl font-bold text-white mt-1">Test Your Verification Instincts</h3>
+          </div>
+          <div class="flex items-center space-x-3 text-xs" id="quiz-header-score">
+            <span class="text-slate-400">Score: <strong class="text-cyan-400 font-bold" id="score-val">0</strong> / 3</span>
+          </div>
+        </div>
+
+        <div id="quiz-container">
+          <!-- Quiz JS Injection -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================== TAB 4: RESEARCH & SOLUTIONS MATRIX ===================================== -->
+    <section id="tab-content-research" class="tab-content hidden space-y-8">
+      
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">PPT Slide 03 & 10</span>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Research Data & Solutions Evaluation</h1>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Secondary research evidence alongside the concept evaluation matrix from Assessment-2.
+        </p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-2">
+          <div class="text-3xl font-black text-cyan-400">13</div>
+          <p class="text-xs font-bold text-white uppercase tracking-wider">Scam Messages / Day</p>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Average scam messages encountered daily per Indian respondent (McAfee Scamiverse 2026 report).
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-2">
+          <div class="text-3xl font-black text-amber-400">102 hrs</div>
+          <p class="text-xs font-bold text-white uppercase tracking-wider">Time Wasted Per Year</p>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Time spent working out whether online offers and messages are real or fake.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-2 sm:col-span-2 lg:col-span-1">
+          <div class="text-3xl font-black text-emerald-400">5 of 6</div>
+          <p class="text-xs font-bold text-white uppercase tracking-wider">Primary Checkpoint</p>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Student interview respondents cited checking company or provider official websites as their top verification attempt.
+          </p>
+        </div>
+      </div>
+
+      <!-- Solutions Matrix Table -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div>
+          <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Evaluated Directions (PPT Slide 10)</span>
+          <h3 class="text-xl font-bold text-white mt-0.5">Solutions Decision Matrix</h3>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase tracking-wider">
+                <th class="p-3">Concept Direction</th>
+                <th className="p-3">What It Does</th>
+                <th class="p-3">Meets User Needs</th>
+                <th class="p-3">Feasibility</th>
+                <th class="p-3">Selected Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr class="hover:bg-slate-950/40">
+                <td class="p-3 font-bold text-white">1. Evidence Finder</td>
+                <td class="p-3">Investigates organisation identity</td>
+                <td class="p-3">Answers "who is behind this?"</td>
+                <td class="p-3 text-amber-400">Moderate</td>
+                <td class="p-3 text-slate-500">Considered</td>
+              </tr>
+              <tr class="hover:bg-slate-950/40">
+                <td class="p-3 font-bold text-white">2. Instant Scam Check</td>
+                <td class="p-3">Flags suspicious wording patterns</td>
+                <td class="p-3">Spots triggers, little guidance</td>
+                <td class="p-3 text-emerald-400">High</td>
+                <td class="p-3 text-slate-500">Considered</td>
+              </tr>
+              <tr class="hover:bg-slate-950/40">
+                <td class="p-3 font-bold text-white">3. Verification Copilot</td>
+                <td class="p-3">Guides step by step checks</td>
+                <td class="p-3">Guides action, less evidence</td>
+                <td class="p-3 text-emerald-400">High</td>
+                <td class="p-3 text-slate-500">Considered</td>
+              </tr>
+              <tr class="bg-cyan-950/30 font-semibold border-l-2 border-cyan-500">
+                <td class="p-3 text-cyan-300 flex items-center space-x-1">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                  <span>4. Hybrid Assistant (LEGITCHECK)</span>
+                </td>
+                <td class="p-3 text-white">Combines warning check, Evidence Card & guided steps</td>
+                <td class="p-3 text-emerald-400">Covers warning, evidence & action</td>
+                <td class="p-3 text-cyan-300">Widest Scope</td>
+                <td class="p-3">
+                  <span class="bg-cyan-500 text-slate-950 px-2 py-0.5 rounded text-[10px] font-bold">
+                    SELECTED CONCEPT
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Official References -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3 text-xs">
+        <h4 class="text-sm font-bold text-white">Official Verification Channels & References</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-400">
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <p class="font-bold text-slate-200">National Career Service (NCS)</p>
+            <p class="mt-1">States explicitly that official registrations, applications, and interviews carry ZERO charges. (ncs.gov.in)</p>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <p class="font-bold text-slate-200">National Cyber Crime Portal</p>
+            <p class="mt-1">Official Government helpline & reporting portal for cyber financial frauds. (cybercrime.gov.in)</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-400"></i>
+        <span class="text-slate-300 font-semibold">LEGITCHECK Concept Prototype</span>
+      </div>
+      <p>
+        Design Thinking Assessment-2 | <strong class="text-slate-300">Yash Raj (26BCS11169)</strong> | Chandigarh University
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // PRESETS DATA
+    const PRESET_SAMPLES = [
+      {
+        id: 1,
+        title: "High Risk (PPT)",
+        tag: "₹799 Fee Scam",
+        text: "Congratulations! You’ve been selected for a paid internship at TechCorp. Pay a ₹799 verification fee within 10 minutes to secure your place. Reply with your Aadhaar number to confirm.",
+        risk: "HIGH_RISK",
+        score: 88,
+        badge: "HIGH CAUTION — INVESTIGATE FURTHER",
+        summary: "Exhibits dangerous indicators including upfront fee requests, extreme deadline pressure, and asking for national ID details.",
+        flags: [
+          { title: "Upfront Payment Request", desc: "Demanding ₹799 'verification fee'. Legitimate employers never charge candidates to apply or join.", level: "critical" },
+          { title: "Artificial Urgency (10 min)", desc: "10-minute deadline forces hasty decisions and prevents independent checking.", level: "critical" },
+          { title: "Personal ID Document Requested", desc: "Asking for Aadhaar over messaging prior to formal contract.", level: "warning" },
+          { title: "Unverified Recruiter Identity", desc: "Sender identity is not established via official corporate HR email.", level: "warning" }
+        ],
+        evidence: {
+          confirmed: [],
+          warningSigns: ["₹799 Upfront Fee", "10-Min Deadline", "Aadhaar Request", "Unverified Contact"],
+          unverified: ["TechCorp Employer Registration", "Official HR Email Domain"]
+        }
+      },
+      {
+        id: 2,
+        title: "Task / Gig Scam",
+        tag: "Telegram Earnings",
+        text: "Earn ₹2,000/day working 2 hours from home! Simple YouTube like & subscribe task. Telegram channel: t.me/fast_cash_jobs_2026. No experience needed. DM now!",
+        risk: "MEDIUM_RISK",
+        score: 65,
+        badge: "CAUTION — POTENTIAL TASK SCAM",
+        summary: "Classic pay-per-like or task scam operating through anonymous messaging groups.",
+        flags: [
+          { title: "Unrealistic Earnings for Effort", desc: "₹2,000/day for minimal effort is a hook used in task pyramid schemes.", level: "warning" },
+          { title: "Anonymous Telegram Redirect", desc: "Conducting recruitment exclusively via Telegram avoiding traceable company emails.", level: "warning" },
+          { title: "Zero Experience or Resume Required", desc: "Guaranteed high payout without screening or skills check.", level: "info" }
+        ],
+        evidence: {
+          confirmed: [],
+          warningSigns: ["Unrealistic Earnings", "Telegram Channel Redirect", "Low Effort Guarantee"],
+          unverified: ["Registered Business Entity", "GST / Tax Compliance"]
+        }
+      },
+      {
+        id: 3,
+        title: "Official Campus",
+        tag: "Verified Pattern",
+        text: "Dear Jayesh,\nThank you for applying for the Software Intern position at Chandigarh University Dev Labs. Please check your student portal at cu.edu.in to view interview slots.\nNote: CU placement portal never charges fees for interviews.",
+        risk: "LOW_RISK",
+        score: 12,
+        badge: "VERIFIED PATTERN — LOW RISK",
+        summary: "Directs candidate to official institutional domain (.edu.in) with explicit anti-fee disclaimers.",
+        flags: [
+          { title: "Official Institutional Domain", desc: "Directs students to official campus portal domain.", level: "safe" },
+          { title: "Explicit Zero-Fee Policy", desc: "Reaffirms official placement guidelines: zero fees for interviews.", level: "safe" }
+        ],
+        evidence: {
+          confirmed: ["Official Institutional Domain (cu.edu.in)", "Campus Placement Branding", "Zero Fee Policy Notice"],
+          warningSigns: [],
+          unverified: ["Specific Recruiter Panel ID"]
+        }
+      }
+    ];
+
+    // QUIZ DATA
+    const QUIZ_QUESTIONS = [
+      {
+        id: 1,
+        sender: "HR Manager <careers-global-techcorp@gmail.com>",
+        message: "You are shortlisted! Pay ₹499 security deposit (refundable) for laptop delivery.",
+        question: "What is the primary red flag in this offer?",
+        options: [
+          { text: "Gmail address used instead of corporate domain", isCorrect: false },
+          { text: "Asking for a refundable security deposit fee", isCorrect: true },
+          { text: "Shortlisted without interview", isCorrect: false },
+          { text: "All of the above combined", isCorrect: false }
+        ],
+        explanation: "While using @gmail.com is suspicious, asking for upfront money (even claiming 'refundable') is the #1 dealbreaker signal of employment fraud."
+      },
+      {
+        id: 2,
+        sender: "WhatsApp Message from +91 98XXX-XXXXX",
+        message: "Urgent hiring for Amazon Data Entry! Only 3 slots left. Click bit.ly/amz-fast-job to reserve slot in 5 mins.",
+        question: "Why does the 5-minute timer matter?",
+        options: [
+          { text: "It tests candidate typing speed", isCorrect: false },
+          { text: "It creates artificial urgency to prevent you from checking official sites", isCorrect: true },
+          { text: "It ensures only top candidates apply", isCorrect: false },
+          { text: "It is standard recruitment software automation", isCorrect: false }
+        ],
+        explanation: "Artificial deadlines induce panic and Fear Of Missing Out (FOMO), pressuring students into bypassing basic verification checks."
+      },
+      {
+        id: 3,
+        sender: "Instagram DM @internships_india_official",
+        message: "DM us your resume and college ID card photo to get guaranteed certificate and ₹10,000 stipend.",
+        question: "What should be your IMMEDIATE next step?",
+        options: [
+          { text: "Send college ID photo right away", isCorrect: false },
+          { text: "Pay ₹100 registration fee if asked", isCorrect: false },
+          { text: "Verify if the profile is linked to an official registered company website first", isCorrect: true },
+          { text: "Share the post with 5 friends", isCorrect: false }
+        ],
+        explanation: "Never share sensitive student ID documents or payment without verifying the company entity through official corporate registries or direct website domains."
+      }
+    ];
+
+    // STATE VARIABLES
+    let activePreset = 1;
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+
+    // INITIALIZATION
+    window.onload = function() {
+      lucide.createIcons();
+      renderPresets();
+      loadPreset(1);
+      renderQuizQuestion();
+
+      // Input listener
+      const inputEl = document.getElementById('scanner-input');
+      inputEl.addEventListener('input', (e) => {
+        document.getElementById('char-count').innerText = `${e.target.value.length} chars`;
+      });
+    };
+
+    // TAB SWITCHING
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'shadow-md', 'shadow-cyan-500/20');
+        btn.classList.add('text-slate-400');
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
+      activeBtn.classList.add('bg-cyan-500', 'text-slate-950', 'shadow-md', 'shadow-cyan-500/20');
+      activeBtn.classList.remove('text-slate-400');
+
+      document.getElementById(`tab-content-${tabKey}`).classList.remove('hidden');
+    }
+
+    // RENDER PRESETS
+    function renderPresets() {
+      const container = document.getElementById('preset-container');
+      container.innerHTML = PRESET_SAMPLES.map(sample => `
+        <button
+          onclick="loadPreset(${sample.id})"
+          id="preset-btn-${sample.id}"
+          class="p-2 rounded-lg text-left text-xs border transition-all border-slate-800 bg-slate-950/50 text-slate-400 hover:border-slate-700 hover:text-slate-300"
+        >
+          <p class="font-semibold truncate">${sample.title}</p>
+          <p class="text-[10px] text-slate-500 truncate">${sample.tag}</p>
+        </button>
+      `).join('');
+    }
+
+    // LOAD PRESET INTO INPUT
+    function loadPreset(id) {
+      activePreset = id;
+      const sample = PRESET_SAMPLES.find(s => s.id === id);
+      
+      PRESET_SAMPLES.forEach(s => {
+        const btn = document.getElementById(`preset-btn-${s.id}`);
+        if(btn) {
+          if (s.id === id) {
+            btn.className = "p-2 rounded-lg text-left text-xs border transition-all border-cyan-500 bg-cyan-950/40 text-cyan-200 font-medium shadow-sm";
+          } else {
+            btn.className = "p-2 rounded-lg text-left text-xs border transition-all border-slate-800 bg-slate-950/50 text-slate-400 hover:border-slate-700 hover:text-slate-300";
+          }
+        }
+      });
+
+      document.getElementById('scanner-input').value = sample.text;
+      document.getElementById('char-count').innerText = `${sample.text.length} chars`;
+      renderOutput(sample);
+    }
+
+    // RUN SCANNER
+    function runScanner() {
+      const text = document.getElementById('scanner-input').value.trim();
+      if (!text) return;
+
+      const outputWrapper = document.getElementById('output-wrapper');
+      
+      // Loading State
+      outputWrapper.innerHTML = `
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center flex flex-col items-center justify-center min-h-[420px] space-y-4">
+          <div class="relative">
+            <div class="w-16 h-16 border-4 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+            <i data-lucide="shield-alert" class="w-7 h-7 text-cyan-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-200">Analyzing Pattern Signature</h3>
+            <p class="text-xs text-slate-400 mt-1">Checking upfront fee rules, urgency triggers, identity consistency...</p>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+
+      setTimeout(() => {
+        // Heuristic calculation
+        const lower = text.toLowerCase();
+        const hasFee = lower.includes('fee') || lower.includes('pay') || lower.includes('₹') || lower.includes('rs') || lower.includes('charge');
+        const hasUrgency = lower.includes('min') || lower.includes('urgent') || lower.includes('today') || lower.includes('now') || lower.includes('limited');
+        const hasId = lower.includes('aadhaar') || lower.includes('pan') || lower.includes('id card');
+        const hasTelegram = lower.includes('telegram') || lower.includes('t.me') || lower.includes('whatsapp') || lower.includes('dm');
+
+        let detectedFlags = [];
+        let warningSigns = [];
+        let risk = "LOW_RISK";
+        let score = 15;
+        let badge = "UNVERIFIED PATTERN — PROCEED WITH CAUTION";
+
+        if (hasFee) {
+          detectedFlags.push({ title: "Upfront Payment Request", desc: "Demanding money before or during recruitment process.", level: "critical" });
+          warningSigns.push("Upfront Fee Demand");
+          score += 45;
+        }
+        if (hasUrgency) {
+          detectedFlags.push({ title: "Artificial Time Pressure", desc: "Imposes quick deadlines encouraging hasty decisions.", level: "critical" });
+          warningSigns.push("Artificial Urgency");
+          score += 25;
+        }
+        if (hasId) {
+          detectedFlags.push({ title: "Personal ID Document Requested", desc: "Requests government/college ID prior to formal contract.", level: "warning" });
+          warningSigns.push("Personal Data Collection");
+          score += 15;
+        }
+        if (hasTelegram) {
+          detectedFlags.push({ title: "Unofficial Messaging Channel", desc: "Uses informal messenger apps as primary workplace medium.", level: "warning" });
+          warningSigns.push("Chat App Recruitment");
+          score += 10;
+        }
+
+        if (score > 60) {
+          risk = "HIGH_RISK";
+          badge = "HIGH CAUTION — INVESTIGATE FURTHER";
+        } else if (score > 35) {
+          risk = "MEDIUM_RISK";
+          badge = "MODERATE RISK — NEEDS VERIFICATION";
+        }
+
+        const customResult = {
+          risk: risk,
+          score: Math.min(score, 95),
+          badge: badge,
+          summary: detectedFlags.length > 0 
+            ? `Detected ${detectedFlags.length} key warning indicator(s) requiring independent check.`
+            : "No obvious scam triggers detected automatically, but sender identity remains unverified.",
+          flags: detectedFlags.length > 0 ? detectedFlags : [
+            { title: "Unverified Sender Entity", desc: "Text alone cannot guarantee recruiter legitimacy without domain verification.", level: "info" }
+          ],
+          evidence: {
+            confirmed: [],
+            warningSigns: warningSigns,
+            unverified: ["Organisation Registration", "Recruiter LinkedIn profile", "Official Email Domain"]
+          }
+        };
+
+        renderOutput(customResult);
+      }, 700);
+    }
+
+    // RENDER SCANNER OUTPUT
+    function renderOutput(data) {
+      const outputWrapper = document.getElementById('output-wrapper');
+      
+      const badgeStyle = data.risk === 'HIGH_RISK' 
+        ? 'bg-red-500/20 text-red-400 border-red-500/30' 
+        : data.risk === 'MEDIUM_RISK'
+        ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+        : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+
+      const cardStyle = data.risk === 'HIGH_RISK'
+        ? 'bg-red-950/20 border-red-800/80'
+        : data.risk === 'MEDIUM_RISK'
+        ? 'bg-amber-950/20 border-amber-800/80'
+        : 'bg-emerald-950/20 border-emerald-800/80';
+
+      outputWrapper.innerHTML = `
+        <!-- Status Card -->
+        <div class="border rounded-2xl p-5 shadow-xl transition-all ${cardStyle}">
+          <div class="flex items-start justify-between">
+            <div class="space-y-1">
+              <div class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${badgeStyle}">
+                <i data-lucide="${data.risk === 'HIGH_RISK' ? 'alert-octagon' : data.risk === 'MEDIUM_RISK' ? 'alert-triangle' : 'check-circle'}" class="w-3.5 h-3.5 mr-1"></i>
+                <span>${data.badge}</span>
+              </div>
+              <h2 class="text-xl font-bold text-white pt-2">Verification Diagnostic</h2>
+              <p class="text-xs sm:text-sm text-slate-300">${data.summary}</p>
+            </div>
+
+            <div class="text-right shrink-0">
+              <div class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                ${data.score}<span class="text-xs font-normal text-slate-400">/100</span>
+              </div>
+              <p class="text-[10px] text-slate-400 uppercase tracking-widest font-medium">Caution Index</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning Signs Flags -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-cyan-400"></i>
+            <span>Identified Warning Indicators</span>
+          </h3>
+
+          <div class="space-y-2">
+            ${data.flags.map(flag => {
+              const flagStyle = flag.level === 'critical'
+                ? 'bg-red-950/20 border-red-900/60 text-red-200'
+                : flag.level === 'warning'
+                ? 'bg-amber-950/20 border-amber-900/60 text-amber-200'
+                : flag.level === 'safe'
+                ? 'bg-emerald-950/20 border-emerald-900/60 text-emerald-200'
+                : 'bg-slate-950/50 border-slate-800 text-slate-300';
+
+              const icon = flag.level === 'critical' ? 'shield-alert' : flag.level === 'warning' ? 'alert-triangle' : flag.level === 'safe' ? 'check-circle' : 'info';
+
+              return `
+                <div class="p-3 rounded-xl border flex items-start space-x-3 ${flagStyle}">
+                  <i data-lucide="${icon}" class="w-4 h-4 mt-0.5 shrink-0"></i>
+                  <div>
+                    <p class="text-xs sm:text-sm font-bold text-white">${flag.title}</p>
+                    <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">${flag.desc}</p>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- Evidence Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span>Evidence Card Summary</span>
+            </h3>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">
+              PPT Slide 12
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="bg-emerald-950/20 border border-emerald-900/40 p-3 rounded-xl">
+              <div class="flex items-center space-x-1.5 text-emerald-400 font-semibold text-xs mb-2">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span>CONFIRMED</span>
+              </div>
+              ${data.evidence.confirmed.length > 0 
+                ? `<ul class="space-y-1">${data.evidence.confirmed.map(item => `<li class="text-[11px] text-emerald-200">• ${item}</li>`).join('')}</ul>`
+                : `<p class="text-[11px] text-slate-500 italic">None independently established yet.</p>`
+              }
+            </div>
+
+            <div class="bg-amber-950/20 border border-amber-900/40 p-3 rounded-xl">
+              <div class="flex items-center space-x-1.5 text-amber-400 font-semibold text-xs mb-2">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+                <span>WARNING SIGNS</span>
+              </div>
+              ${data.evidence.warningSigns.length > 0 
+                ? `<ul class="space-y-1">${data.evidence.warningSigns.map(item => `<li class="text-[11px] text-amber-200">• ${item}</li>`).join('')}</ul>`
+                : `<p class="text-[11px] text-slate-500 italic">No explicit warning signs.</p>`
+              }
+            </div>
+
+            <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl">
+              <div class="flex items-center space-x-1.5 text-slate-400 font-semibold text-xs mb-2">
+                <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+                <span>UNVERIFIED</span>
+              </div>
+              <ul class="space-y-1">
+                ${data.evidence.unverified.map(item => `<li class="text-[11px] text-slate-400">• ${item}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/60 text-xs text-slate-400">
+            <span class="text-cyan-400 font-bold">Why these signs matter: </span>
+            A real company name in a text message does not prove the recruiter is legitimate. Verify independently before paying or sharing ID details.
+          </div>
+        </div>
+
+        <!-- Guided Safe Next Steps -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="check-square" class="w-4 h-4 text-cyan-400"></i>
+            <span>Guided Safe Next Steps Checklist</span>
+          </h3>
+
+          <div class="space-y-2">
+            <label class="p-3 rounded-xl border border-slate-800 bg-slate-950/60 flex items-center space-x-3 cursor-pointer hover:border-slate-700 transition-all text-xs sm:text-sm text-slate-300">
+              <input type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-slate-900 border-slate-700 focus:ring-cyan-500">
+              <span>1. Open the official website yourself in a separate browser tab</span>
+            </label>
+
+            <label class="p-3 rounded-xl border border-slate-800 bg-slate-950/60 flex items-center space-x-3 cursor-pointer hover:border-slate-700 transition-all text-xs sm:text-sm text-slate-300">
+              <input type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-slate-900 border-slate-700 focus:ring-cyan-500">
+              <span>2. Verify recruiter on official LinkedIn or contact listed HR desk</span>
+            </label>
+
+            <label class="p-3 rounded-xl border border-slate-800 bg-slate-950/60 flex items-center space-x-3 cursor-pointer hover:border-slate-700 transition-all text-xs sm:text-sm text-slate-300">
+              <input type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-slate-900 border-slate-700 focus:ring-cyan-500">
+              <span>3. PAUSE & NEVER pay registration or verification fees</span>
+            </label>
+
+            <label class="p-3 rounded-xl border border-slate-800 bg-slate-950/60 flex items-center space-x-3 cursor-pointer hover:border-slate-700 transition-all text-xs sm:text-sm text-slate-300">
+              <input type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-slate-900 border-slate-700 focus:ring-cyan-500">
+              <span>4. Report suspicious sender to Cyber Crime Portal (cybercrime.gov.in)</span>
+            </label>
+          </div>
+        </div>
+      `;
+
+      lucide.createIcons();
+    }
+
+    // RENDER QUIZ QUESTION
+    function renderQuizQuestion() {
+      const quizContainer = document.getElementById('quiz-container');
+      const q = QUIZ_QUESTIONS[currentQuizIndex];
+
+      quizContainer.innerHTML = `
+        <div class="space-y-4">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase">Incoming Message Snippet</span>
+            <p class="text-xs font-semibold text-slate-400">${q.sender}</p>
+            <p class="text-sm font-mono text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800">
+              "${q.message}"
+            </p>
+          </div>
+
+          <p class="text-sm font-bold text-white">${q.question}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-options">
+            ${q.options.map((opt, idx) => `
+              <button
+                onclick="handleQuizAnswer(${idx}, ${opt.isCorrect})"
+                class="quiz-opt-btn p-3.5 rounded-xl border border-slate-800 bg-slate-950 text-left text-xs sm:text-sm text-slate-300 hover:border-slate-700 transition-all flex items-start space-x-2"
+              >
+                <span class="font-bold text-slate-500">${String.fromCharCode(65 + idx)}.</span>
+                <span class="flex-1">${opt.text}</span>
+              </button>
+            `).join('')}
+          </div>
+
+          <div id="quiz-feedback" class="hidden"></div>
+        </div>
+      `;
+    }
+
+    function handleQuizAnswer(index, isCorrect) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      if (isCorrect) {
+        quizScore++;
+        document.getElementById('score-val').innerText = quizScore;
+      }
+
+      const q = QUIZ_QUESTIONS[currentQuizIndex];
+      const feedbackEl = document.getElementById('quiz-feedback');
+      
+      feedbackEl.className = "bg-cyan-950/30 border border-cyan-800/60 p-4 rounded-xl space-y-3 block";
+      feedbackEl.innerHTML = `
+        <p class="text-xs text-cyan-200 leading-relaxed">
+          <strong class="text-cyan-400">Why this matters: </strong> ${q.explanation}
+        </p>
+        <button
+          onclick="nextQuizQuestion()"
+          class="bg-cyan-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg hover:bg-cyan-400 transition-all flex items-center space-x-1"
+        >
+          <span>${currentQuizIndex < QUIZ_QUESTIONS.length - 1 ? 'Next Scenario' : 'View Badge Results'}</span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      `;
+
+      lucide.createIcons();
+    }
+
+    function nextQuizQuestion() {
+      quizAnswered = false;
+      if (currentQuizIndex < QUIZ_QUESTIONS.length - 1) {
+        currentQuizIndex++;
+        renderQuizQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+
+    function showQuizResults() {
+      const quizContainer = document.getElementById('quiz-container');
+      quizContainer.innerHTML = `
+        <div class="text-center py-8 space-y-4">
+          <div class="w-16 h-16 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/20">
+            <i data-lucide="award" class="w-8 h-8 text-slate-950"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Badge Unlocked</span>
+            <h3 class="text-2xl font-black text-white mt-1">Savvy Student Verifier</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-md mx-auto">
+              You scored ${quizScore} out of ${QUIZ_QUESTIONS.length}. You can now spot psychological tricks like upfront payment demands and artificial deadlines!
+            </p>
+          </div>
+          <button
+            onclick="restartQuiz()"
+            class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold px-5 py-2.5 rounded-xl transition-all"
+          >
+            Play Again
+          </button>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function restartQuiz() {
+      currentQuizIndex = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      document.getElementById('score-val').innerText = '0';
+      renderQuizQuestion();
+    }
+  </script>
+</body>
+</html>
